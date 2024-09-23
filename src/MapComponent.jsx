@@ -42,7 +42,7 @@ function MapComponent({ markers }) {
     }, [markers]);
 
     return (
-        <div id="map" style={{ width: '100%', height: '100vh' }}>
+        <div id="map" style={{ width: '100%', height: 'calc(var(--vh, 1vh) * 100)' }}>
             <ModalComponent
                 isOpen={!!selectedMarker}
                 onClose={() => setSelectedMarker(null)}
