@@ -20,7 +20,7 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path="/" element={<MapComponent markers={markers} />} />
-                    <Route path="/menu" element={<MenuScreen />} />
+                    <Route path="/menu/:id" element={<MenuScreen />} />
                 </Routes>
             </div>
         </Router>
