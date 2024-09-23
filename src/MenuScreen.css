@@ -1,8 +1,10 @@
 .menu-screen {
     font-family: 'Pretendard', Arial, sans-serif;
-    background-color: #fff;
+    background-color: var(--white);
     max-width: 500px;
     margin: 0 auto;
+    background-image: url('./rectangle.png');
+    background-size: 100% 100%;
 }
 
 .header {
@@ -27,26 +29,6 @@
     object-fit: cover;
 }
 
-.restaurant-info {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.restaurant-info h1 {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.restaurant-info p {
-    color: #888;
-    margin: 5px 0;
-}
-
-.action-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-}
 
 .menu-list {
 
