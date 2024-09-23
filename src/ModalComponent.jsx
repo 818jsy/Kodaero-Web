@@ -15,13 +15,12 @@ function ModalComponent({ isOpen, onClose, markerData }) {
                 justifyContent: 'center',
                 alignItems: 'flex-end',  // 하단에 정렬
                 height: '100vh',
-                width: '100%',// 전체 높이를 사용하여 정렬
-                margin: '0, auto'
+                width: '100%'// 전체 높이를 사용하여 정렬
             }}
         >
             <Sheet.Container className="custom-sheet-container">
                 <Sheet.Header />
-                <Sheet.Content>
+                <Sheet.Content className="custom-sheet-content">
                     <div className="modal-content-wrapper">
                         <div className="modal-content">
                             <div className="sponsor-container">

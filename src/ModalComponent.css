@@ -3,15 +3,20 @@
     background-color: white !important;
     border-radius: 16px 16px 0 0 !important;
     box-shadow: 0px -2px 15px rgba(0, 0, 0, 0.3) !important;
-    width: 90vw !important;;
+    width: 100vw !important;;
     max-width: 500px !important;
     margin: 0 auto !important;
     left: auto !important;
+    height: auto !important;
 }
 
 /* 모달 본문 내용 스타일 */
 .modal-content {
-    padding: 15px 0;
+}
+
+.custom-sheet-content {
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 /* 모달 푸터 - 메뉴, 출발, 도착 버튼 포함 */
@@ -38,6 +43,7 @@
     color: var(--red);
     border: 1px solid var(--red);
     font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .arrive-button {
@@ -45,6 +51,7 @@
     color: var(--red);
     border: 1px solid var(--red);
     font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .menu-button {
@@ -55,7 +62,7 @@
 }
 
 /* 텍스트 스타일링 */
-.sponser, .address, .time, .name, .operating {
+.sponsor, .address, .time, .name, .operating {
     text-align: left;
     margin-bottom: 0px;
     margin-top: 7px;
@@ -78,6 +85,7 @@
     font-family: PretendardRegular, serif;
     color: var(--gray);
     font-size: 13px;
+    display: none;
 }
 
 .name {
@@ -86,7 +94,7 @@
     font-size: 20px;
 }
 
-.sponser {
+.sponsor {
     font-family: PretendardBold, serif;
     color: var(--red);
     font-size: 16px;
@@ -97,6 +105,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    margin-top: 5px;
 }
 
 .sponsor-container {
