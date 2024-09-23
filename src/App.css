@@ -3,14 +3,13 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden; /* 스크롤을 없애기 위해 hidden 설정 */
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100); /* 100vh 대신 실제 뷰포트 높이 */
 }
 
 #root {
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
-  height: 100%; /* 부모의 높이에 맞춤 */
+  height: calc(var(--vh, 1vh) * 100); /* 100vh 대신 실제 뷰포트 높이 */
   box-sizing: border-box; /* 패딩이 포함되도록 설정 */
 }
 
