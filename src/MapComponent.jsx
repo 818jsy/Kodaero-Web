@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import markerIcon from './assets/marker.svg'; // SVG 파일을 import
+import markerIcon from './assets/marker.png'; // SVG 파일을 import
 import ModalComponent from './ModalComponent'; // ModalComponent import
 
 function MapComponent({ markers }) {
@@ -26,10 +26,12 @@ function MapComponent({ markers }) {
                     title: markerData.name,
                     icon: {
                         url: markerIcon,  // SVG 파일을 마커로 사용
-                        size: new window.naver.maps.Size(50, 52),
-                        origin: new window.naver.maps.Point(0, 0),
-                        anchor: new window.naver.maps.Point(25, 26),
+                        size: new window.naver.maps.Size(20, 31),  // 크기를 4분의 1로 줄임
+                        scaledSize: new naver.maps.Size(20, 31),
+                        origin: new window.naver.maps.Point(0, 0),  // 기준점은 동일하게 왼쪽 상단
+                        anchor: new window.naver.maps.Point(6.25, 6.5),  // 4분의 1 크기에 맞춘 앵커
                     }
+
                 });
 
                 // 마커 클릭 이벤트
