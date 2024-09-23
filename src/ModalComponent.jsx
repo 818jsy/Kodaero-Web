@@ -12,10 +12,13 @@ function ModalComponent({ isOpen, onClose, markerData }) {
                     <button onClick={onClose} className="close-button">X</button>
                 </div>
                 <div className="modal-content">
-                    <h2>{markerData.name}</h2>
-                    <p>후원자: {markerData.sponsor}</p>
-                    <p>주소: {markerData.address}</p>
-                    <p>영업시간: {markerData.time || '정보 없음'}</p>
+                    <p className="sponser">후원자: {markerData.sponsor}</p>
+                    <p className="name">{markerData.name}</p>
+                    <p className="address">주소: {markerData.address}</p>
+                    <p className="time">22:00에 무료주점 종료</p>
+                </div>
+                <div className="modal-footer">
+                    <button className="menu-button">메뉴 정보 보기</button>
                 </div>
                 <div className="modal-footer">
                     <button className="depart-button">출발</button>

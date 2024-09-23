@@ -8,6 +8,37 @@ html, body, #root {
   overflow: hidden; /* 스크롤바를 숨김 */
 }
 
-body {
-  font-family: Arial, sans-serif; /* 기본 폰트 설정 */
+/* @font-face 규칙을 사용하여 Pretendard 폰트 정의 */
+@font-face {
+  font-family: 'PretendardRegular';
+  src: url('./assets/fonts/pretendard_regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PretendardBold';
+  src: url('./assets/fonts/pretendard_bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PretendardSemiBold';
+  src: url('./assets/fonts/pretendard_semibold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* :root에서 전역적으로 컬러 변수를 선언 */
+:root {
+  --red: #F85C5C;   /* 토마토 */
+  --white: #FFFFFF; /* 스틸블루 */
+}
+
+/* 모든 요소에 Pretendard 폰트 적용 */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard', Arial, sans-serif;
 }
