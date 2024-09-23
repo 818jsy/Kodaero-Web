@@ -19,6 +19,24 @@ function MapComponent({ markers }) {
 
             const map = new window.naver.maps.Map('map', mapOptions);
 
+            markers.forEach(markerData => {
+                const marker = new window.naver.maps.Marker({
+                    position: new window.naver.maps.LatLng(parseFloat(markerData.lat), parseFloat(markerData.lon)),
+                    map: map,
+                    title: markerData.name,
+                    icon: {
+                        url: markerIcon,  // SVG 파일을 마커로 사용
+                        size: new window.naver.maps.Size(50, 52),
+                        origin: new window.naver.maps.Point(0, 0),
+                        anchor: new window.naver.maps.Point(25, 26),
+                    }
+                });
+
+                // 마커 클릭 이벤트
+                window.naver.maps.Event.addListener(marker, 'click', function() {
+                    setSelectedMarker(markerData); // 마커 클릭 시 모달을 띄울 데이터 설정
+                });
+            });
         };
         document.head.appendChild(script);
     }, [markers]);
