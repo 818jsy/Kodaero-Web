@@ -32,8 +32,10 @@ html, body, #root {
 
 /* :root에서 전역적으로 컬러 변수를 선언 */
 :root {
-  --red: #F85C5C;   /* 토마토 */
-  --white: #FFFFFF; /* 스틸블루 */
+  --red: #F85C5C;
+  --white: #FFFFFF;
+  --gray: #424242;
+  --lightgray: #B0B0B0;
 }
 
 /* 모든 요소에 Pretendard 폰트 적용 */
