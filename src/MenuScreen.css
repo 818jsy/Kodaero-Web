@@ -8,13 +8,13 @@
 .header {
     position: relative;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .back-icon {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 30px;
+    left: 30px;
     width: 24px;
     height: 24px;
     cursor: pointer;
