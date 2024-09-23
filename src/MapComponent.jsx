@@ -9,11 +9,11 @@ function MapComponent({ markers }) {
         console.log('Markers data:', markers); // markers 배열을 콘솔에 출력
 
         const script = document.createElement('script');
-        script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8alsyra0y4`;
+        script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8alsyra0y4';
         script.async = true;
         script.onload = () => {
             const mapOptions = {
-                center: new window.naver.maps.LatLng(37.58639, 127.02917),
+                center: new window.naver.maps.LatLng(37.5855, 127.0295),
                 zoom: 17,
             };
 

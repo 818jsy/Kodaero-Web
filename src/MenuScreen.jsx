@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './MenuScreen.css'; // 필요한 스타일링을 위한 CSS 파일
-import backIcon from './assets/images/icon_back.svg'; // 뒤로가기 아이콘
+import './MenuScreen.css';
+import backIcon from './assets/images/icon_back.svg';
 import sampleImage from './assets/images/image_restaurant.png';
-import tiger_icon from "./assets/images/icon_tiger.svg"; // 예시 이미지
-import MenuItem from './MenuItem'; // MenuItem 컴포넌트를 import
+import tiger_icon from "./assets/images/icon_tiger.svg";
+import MenuItem from './MenuItem';
 
 function MenuScreen() {
     const location = useLocation();
-    const navigate = useNavigate(); // useNavigate 훅 사용
-    const markerData = location.state; // 전달된 markerData
+    const navigate = useNavigate();
+    const markerData = location.state || JSON.parse(localStorage.getItem('markerData'));
+
+    useEffect(() => {
+        if (markerData) {
+            localStorage.setItem('markerData', JSON.stringify(markerData));
+        }
+    }, [markerData]);
 
     const handleBackClick = () => {
-        navigate(-1); // 이전 페이지로 이동
+        navigate(-1);
     };
 
     return (
@@ -20,7 +26,7 @@ function MenuScreen() {
             <Header onBackClick={handleBackClick} />
             {markerData ? (
                 <>
-                    <div className= "menu-container">
+                    <div className="menu-container">
                         <div className="modal-content">
                             <div className="sponsor-container">
                                 <img src={tiger_icon} alt="Sponsor Logo" className="sponsor-logo"/>
@@ -55,7 +61,7 @@ function MenuScreen() {
 function Header({ onBackClick }) {
     return (
         <div className="header">
-            <img src={backIcon} alt="Back" className="back-icon" onClick={onBackClick} /> {/* 뒤로가기 버튼에 onClick 핸들러 추가 */}
+            <img src={backIcon} alt="Back" className="back-icon" onClick={onBackClick} />
             <img src={sampleImage} alt="Restaurant" className="restaurant-image"/>
         </div>
     );
