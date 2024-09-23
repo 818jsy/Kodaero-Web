@@ -1,0 +1,27 @@
+.menu-item {
+    display: flex;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-bottom: 1px solid #eee;
+    font-size: 18px;
+    align-items: center;
+}
+
+
+.menu-name {
+    color: var(--red);
+    font-family: PretendardSemiBold, serif;
+    margin-left: 10px;
+}
+
+.menu-price {
+    color: var(--red);
+    font-family: PretendardRegular, serif;
+    margin-left: auto;
+}
+
+.restaurant-icon {
+    height: 20px;
+    width: 20px;
+}

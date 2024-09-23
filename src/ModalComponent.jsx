@@ -1,21 +1,29 @@
 import React from 'react';
-import { Sheet } from 'react-modal-sheet'; // 명명된 내보내기 사용
+import { useNavigate } from 'react-router-dom';
+import { Sheet } from 'react-modal-sheet';
 import './ModalComponent.css';
-import tiger_icon from './assets/images/icon_tiger.svg'; // 이미지 파일 임포트
+import tiger_icon from './assets/images/icon_tiger.svg';
 
 function ModalComponent({ isOpen, onClose, markerData }) {
+    const navigate = useNavigate();
+
+    const handleMenuClick = () => {
+        // 메뉴 버튼 클릭 시, markerData를 전달하면서 /menu 경로로 이동
+        navigate('/menu', { state: markerData });
+    };
+
     return (
         <Sheet
             isOpen={isOpen}
             onClose={onClose}
-            snapPoints={[450, 0]} // 스냅 포인트 설정
-            initialSnap={0} // 초기 스냅 포인트
+            snapPoints={[450, 0]}
+            initialSnap={0}
             style={{
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'flex-end',  // 하단에 정렬
+                alignItems: 'flex-end',
                 height: '100vh',
-                width: '100%'// 전체 높이를 사용하여 정렬
+                width: '100%'
             }}
         >
             <Sheet.Container className="custom-sheet-container">
@@ -39,7 +47,9 @@ function ModalComponent({ isOpen, onClose, markerData }) {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="menu-button">메뉴 정보 보기</button>
+                            <button className="menu-button" onClick={handleMenuClick}>
+                                메뉴 정보 보기
+                            </button>
                         </div>
                         <div className="modal-footer">
                             <button className="depart-button">출발</button>

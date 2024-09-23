@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MapComponent from './MapComponent.jsx';
+import MenuScreen from './MenuScreen.jsx';
 import './App.css';
-import MapComponent from './MapComponent';
 
 function App() {
     const [markers, setMarkers] = useState([]);
@@ -14,9 +16,14 @@ function App() {
     }, []);
 
     return (
-        <div className="App">
-            <MapComponent markers={markers} />
-        </div>
+        <Router>
+            <div className="App">
+                <Routes>
+                    <Route path="/" element={<MapComponent markers={markers} />} />
+                    <Route path="/menu" element={<MenuScreen />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 

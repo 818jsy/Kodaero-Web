@@ -1,0 +1,59 @@
+.menu-screen {
+    font-family: 'Pretendard', Arial, sans-serif;
+    background-color: #fff;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.back-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.restaurant-image {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.restaurant-info {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.restaurant-info h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.restaurant-info p {
+    color: #888;
+    margin: 5px 0;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.menu-list {
+
+}
+
+.menu-container{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
