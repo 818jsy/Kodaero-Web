@@ -6,8 +6,6 @@ html, body, #root {
   width: 100%;
   height: calc(var(--vh, 1vh) * 100); /* 100vh 대신 실제 뷰포트 높이 */
   overflow: hidden; /* 스크롤바를 숨김 */
-
-  color-scheme: light only;
 }
 
 /* @font-face 규칙을 사용하여 Pretendard 폰트 정의 */

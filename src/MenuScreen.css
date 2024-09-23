@@ -3,8 +3,6 @@
     background-color: var(--white);
     max-width: 500px;
     margin: 0 auto;
-    background-image: url('./rectangle.png');
-    background-size: 100% 100%;
 }
 
 .header {

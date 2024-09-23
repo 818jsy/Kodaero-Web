@@ -8,7 +8,6 @@ function App() {
     const [markers, setMarkers] = useState([]);
 
     useEffect(() => {
-
         // 로컬에 있는 JSON 파일을 fetch로 불러오기
         fetch('/markers.json')
             .then(response => response.json())
