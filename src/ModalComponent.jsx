@@ -8,7 +8,8 @@ function ModalComponent({ isOpen, onClose, markerData }) {
     const navigate = useNavigate();
 
     const handleMenuClick = () => {
-        navigate(`/menu/${markerData.ID}`);
+        // 메뉴 버튼 클릭 시, markerData를 전달하면서 /menu 경로로 이동
+        navigate('/menu', { state: markerData });
     };
 
     return (
