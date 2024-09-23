@@ -1,24 +1,31 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import './MenuScreen.css';
-import backIcon from './assets/images/icon_back.svg';
-import sampleImage from './assets/images/image_restaurant.png';
-import tiger_icon from "./assets/images/icon_tiger.svg";
-import MenuItem from './MenuItem';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import './MenuScreen.css'; // 필요한 CSS 파일 임포트
+import backIcon from './assets/images/icon_back.svg'; // 뒤로가기 아이콘 이미지
+import sampleImage from './assets/images/image_restaurant.png'; // 레스토랑 이미지
+import tiger_icon from './assets/images/icon_tiger.svg'; // 후원자 로고 이미지
+import MenuItem from './MenuItem'; // MenuItem 컴포넌트를 import
 
 function MenuScreen() {
-    const location = useLocation();
+    const { id } = useParams(); // URL에서 ID를 가져옴
+    const [markerData, setMarkerData] = useState(null);
     const navigate = useNavigate();
-    const markerData = location.state || JSON.parse(localStorage.getItem('markerData'));
 
     useEffect(() => {
-        if (markerData) {
-            localStorage.setItem('markerData', JSON.stringify(markerData));
-        }
-    }, [markerData]);
+        fetch('/markers.json') // 로컬 JSON 파일에서 데이터를 불러옴
+            .then(response => response.json())
+            .then(data => {
+                const foundMarker = data.find(marker => marker.ID === id);
+                if (foundMarker) {
+                    setMarkerData(foundMarker);
+                } else {
+                    navigate('/'); // ID에 해당하는 데이터가 없으면 홈으로 리다이렉트
+                }
+            });
+    }, [id, navigate]);
 
     const handleBackClick = () => {
-        navigate(-1);
+        navigate(-1); // 이전 페이지로 이동
     };
 
     return (
