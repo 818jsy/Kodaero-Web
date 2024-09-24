@@ -2,11 +2,23 @@ import React, { useState, useEffect } from 'react';
 import markerIcon from './assets/marker.png'; // PNG 파일을 import
 import ModalComponent from './ModalComponent'; // ModalComponent import
 
-function MapComponent({ markers }) {
+function MapComponent() {
+    const [markers, setMarkers] = useState([]);
     const [selectedMarker, setSelectedMarker] = useState(null);
 
     useEffect(() => {
-        console.log('Markers data:', markers); // markers 배열을 콘솔에 출력
+        // 로컬에 있는 JSON 파일을 fetch로 불러오기
+        fetch('/markers.json')
+            .then(response => response.json())
+            .then(data => setMarkers(data))
+            .catch(error => console.error('Error fetching the JSON file:', error));
+    }, []);
+
+    useEffect(() => {
+
+        console.log('Markers data:', markers);
+
+        if (markers.length === 0) return; // 마커가 없으면 실행하지 않음
 
         const script = document.createElement('script');
         script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8alsyra0y4';
@@ -34,7 +46,6 @@ function MapComponent({ markers }) {
 
                 const updateMarkerSize = (zoomLevel) => {
                     if (zoomLevel >= 17 && zoomLevel <= 20) {
-                        // 17에서 20까지 1배에서 2배로 점진적 증가
                         const scaleFactor = 1 + (zoomLevel - 17) * 0.33; // 17 -> 1배, 20 -> 2배
                         const newSize = new window.naver.maps.Size(20 * scaleFactor, 31 * scaleFactor);
                         marker.setIcon({
@@ -44,8 +55,7 @@ function MapComponent({ markers }) {
                             origin: new window.naver.maps.Point(0, 0),
                             anchor: new window.naver.maps.Point(10 * scaleFactor, 31 * scaleFactor)
                         });
-                    } else if (zoomLevel >20){
-                        // 2배 크기로 설정
+                    } else if (zoomLevel > 20) {
                         marker.setIcon({
                             url: markerIcon,
                             size: new window.naver.maps.Size(40, 62),
@@ -53,8 +63,7 @@ function MapComponent({ markers }) {
                             origin: new window.naver.maps.Point(0, 0),
                             anchor: new window.naver.maps.Point(20, 62)
                         });
-                    } else
-                        // 기본 크기로 설정
+                    } else {
                         marker.setIcon({
                             url: markerIcon,
                             size: new window.naver.maps.Size(20, 31),
@@ -62,26 +71,23 @@ function MapComponent({ markers }) {
                             origin: new window.naver.maps.Point(0, 0),
                             anchor: new window.naver.maps.Point(10, 31)
                         });
-
+                    }
                 };
 
-                // 초기 줌 레벨에 따라 마커 크기 설정
                 updateMarkerSize(map.getZoom());
 
-                // 지도 줌 변경 이벤트
-                window.naver.maps.Event.addListener(map, 'zoom_changed', function() {
+                window.naver.maps.Event.addListener(map, 'zoom_changed', function () {
                     const zoomLevel = map.getZoom();
                     updateMarkerSize(zoomLevel);
                 });
 
-                // 마커 클릭 이벤트
-                window.naver.maps.Event.addListener(marker, 'click', function() {
-                    setSelectedMarker(markerData); // 마커 클릭 시 모달을 띄울 데이터 설정
+                window.naver.maps.Event.addListener(marker, 'click', function () {
+                    setSelectedMarker(markerData);
                 });
             });
         };
         document.head.appendChild(script);
-    }, [markers]);
+    }, [markers]); // markers가 업데이트될 때마다 실행
 
     return (
         <div id="map" style={{ width: '100%', height: 'calc(var(--vh, 1vh) * 100)' }}>
