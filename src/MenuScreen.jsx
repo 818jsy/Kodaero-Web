@@ -59,7 +59,7 @@ function MenuScreen() {
                     <MenuList menuItems={markerData.menu}/>
                 </>
             ) : (
-                <p>No data available.</p>
+                <p></p>
             )}
         </div>
     );
