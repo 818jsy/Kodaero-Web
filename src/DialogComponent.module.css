@@ -3,7 +3,7 @@
     padding: 24px;
     text-align: center;
     width: 400px !important;
-    max-width: calc(100% - 200px) !important;
+    max-width: calc(100% - 50px) !important;
     margin: 0 auto;
     overflow-x: hidden !important;
 }
