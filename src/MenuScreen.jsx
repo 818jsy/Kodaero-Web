@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './MenuScreen.css'; // 필요한 CSS 파일 임포트
+import styles from './MenuScreen.module.css'; // 필요한 CSS 파일 임포트
 import backIcon from './assets/images/icon_back.svg'; // 뒤로가기 아이콘 이미지
 import sampleImage from './assets/images/image_restaurant.png'; // 레스토랑 이미지
-import tiger_icon from './assets/images/icon_tiger.svg'; // 후원자 로고 이미지
+import tigerIcon from './assets/images/icon_tiger.svg'; // 후원자 로고 이미지
 import MenuItem from './MenuItem'; // MenuItem 컴포넌트를 import
 
 function MenuScreen() {
@@ -29,34 +29,34 @@ function MenuScreen() {
     };
 
     return (
-        <div className="menu-screen">
+        <div className={styles.menuScreen}>
             <Header onBackClick={handleBackClick} />
             {markerData ? (
                 <>
-                    <div className="menu-container">
-                        <div className="modal-content">
-                            <div className="sponsor-container">
-                                <img src={tiger_icon} alt="Sponsor Logo" className="sponsor-logo"/>
-                                <p className="sponsor">{markerData.sponsor}</p>
+                    <div className={styles.menuContainer}>
+                        <div className={styles.modalContent}>
+                            <div className={styles.sponsorContainer}>
+                                <img src={tigerIcon} alt="Sponsor Logo" className={styles.sponsorLogo} />
+                                <p className={styles.sponsor}>{markerData.sponsor}</p>
                             </div>
-                            <div className="name-container">
-                                <p className="name">{markerData.name}</p>
+                            <div className={styles.nameContainer}>
+                                <p className={styles.name}>{markerData.name}</p>
                             </div>
-                            <div className="address-container">
-                                <p className="address">{markerData.address}</p>
+                            <div className={styles.addressContainer}>
+                                <p className={styles.address}>{markerData.address}</p>
                             </div>
-                            <div className="time-container">
-                                <p className="operating">운영 중</p>
-                                <p className="time">22:00에 무료주점 종료</p>
+                            <div className={styles.timeContainer}>
+                                <p className={styles.operating}>운영 중</p>
+                                <p className={styles.time}>22:00에 무료주점 종료</p>
                             </div>
                         </div>
-                        <div className="modal-footer">
-                            <button className="depart-button">출발</button>
-                            <button className="arrive-button">도착</button>
+                        <div className={styles.modalFooter}>
+                            <button className={styles.departButton}>출발</button>
+                            <button className={styles.arriveButton}>도착</button>
                         </div>
                     </div>
 
-                    <MenuList menuItems={markerData.menu}/>
+                    <MenuList menuItems={markerData.menu} />
                 </>
             ) : (
                 <p></p>
@@ -67,16 +67,16 @@ function MenuScreen() {
 
 function Header({ onBackClick }) {
     return (
-        <div className="header">
-            <img src={backIcon} alt="Back" className="back-icon" onClick={onBackClick} />
-            <img src={sampleImage} alt="Restaurant" className="restaurant-image"/>
+        <div className={styles.header}>
+            <img src={backIcon} alt="Back" className={styles.backIcon} onClick={onBackClick} />
+            <img src={sampleImage} alt="Restaurant" className={styles.restaurantImage} />
         </div>
     );
 }
 
 function MenuList({ menuItems }) {
     return (
-        <div className="menu-list">
+        <div className={styles.menuList}>
             {menuItems.map((item, index) => (
                 <MenuItem
                     key={index}

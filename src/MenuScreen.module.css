@@ -1,0 +1,219 @@
+.menuScreen {
+    font-family: 'Pretendard', Arial, sans-serif;
+    background-color: var(--white);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.backIcon {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.restaurantImage {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+
+.menuList {
+
+}
+
+.menuContainer{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+/* Sheet Container 스타일 덮어쓰기 */
+.customSheetContainer {
+    background-color: var(--white) !important;
+    border-radius: 16px 16px 0 0 !important;
+    box-shadow: 0px -2px 15px rgba(0, 0, 0, 0.3) !important;
+    width: 100vw !important;;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+    left: auto !important;
+    height: auto !important;
+}
+
+/* 모달 본문 내용 스타일 */
+.modalContent {
+}
+
+.customSheetContent {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+/* 모달 푸터 - 메뉴, 출발, 도착 버튼 포함 */
+.modalFooter {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+/* 버튼 스타일 - 출발, 도착, 메뉴 보기 */
+.departButton, .arriveButton, .menuButton {
+    height: 50px;
+    width: 48%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: PretendardSemiBold, serif;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.departButton {
+    background-color: var(--white);
+    color: var(--red);
+    border: 1px solid var(--red);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.arriveButton {
+    background-color: var(--white);
+    color: var(--red);
+    border: 1px solid var(--red);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.menuButton {
+    width: 100%;
+    background-color: var(--red);
+    color: var(--white);
+    border: 0px solid var(--red);
+}
+
+/* 텍스트 스타일링 */
+.sponsor, .address, .time, .name, .operating {
+    text-align: left;
+    margin-bottom: 0px;
+    margin-top: 7px;
+}
+
+.operating {
+    font-family: PretendardSemiBold, serif;
+    color: var(--red);
+    font-size: 13px;
+}
+
+.time {
+    font-family: PretendardRegular, serif;
+    color: var(--lightgray);
+    font-size: 13px;
+    margin-left: 6px;
+}
+
+.address {
+    font-family: PretendardRegular, serif;
+    color: var(--gray);
+    font-size: 13px;
+    display: none;
+}
+
+.name {
+    font-family: PretendardBold, serif;
+    color: var(--gray);
+    font-size: 20px;
+}
+
+.sponsor {
+    font-family: PretendardBold, serif;
+    color: var(--red);
+    font-size: 15px;
+}
+
+/* 레이아웃 관련 스타일 */
+.timeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 5px;
+}
+
+.sponsorContainer {
+    display: flex;
+    align-items: center;
+}
+
+.addressContainer {
+    display: flex;
+}
+
+.nameContainer {
+    display: flex;
+}
+
+.sponsorLogo {
+    margin-top: 7px;
+    margin-right: 6px;
+}
+
+
+.time {
+    font-family: PretendardRegular, serif;
+    color: var(--lightgray);
+    font-size: 13px;
+    margin-left: 6px;
+}
+
+.address {
+    font-family: PretendardRegular, serif;
+    color: var(--gray);
+    font-size: 13px;
+    display: none;
+}
+
+.name {
+    font-family: PretendardBold, serif;
+    color: var(--gray);
+    font-size: 20px;
+}
+
+.sponsor {
+    font-family: PretendardBold, serif;
+    color: var(--red);
+    font-size: 15px;
+}
+
+/* 레이아웃 관련 스타일 */
+.time-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 5px;
+}
+
+.sponsor-container {
+    display: flex;
+    align-items: center;
+}
+
+.address-container {
+    display: flex;
+}
+
+.name-container {
+    display: flex;
+}
+
+.sponsor-logo {
+    margin-top: 7px;
+    margin-right: 6px;
+}

@@ -1,5 +1,5 @@
 /* Sheet Container 스타일 덮어쓰기 */
-.custom-sheet-container {
+.customSheetContainer {
     background-color: var(--white) !important;
     border-radius: 16px 16px 0 0 !important;
     box-shadow: 0px -2px 15px rgba(0, 0, 0, 0.3) !important;
@@ -11,23 +11,23 @@
 }
 
 /* 모달 본문 내용 스타일 */
-.modal-content {
+.modalContent {
 }
 
-.custom-sheet-content {
+.customSheetContent {
     margin-left: 30px;
     margin-right: 30px;
 }
 
 /* 모달 푸터 - 메뉴, 출발, 도착 버튼 포함 */
-.modal-footer {
+.modalFooter {
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
 }
 
 /* 버튼 스타일 - 출발, 도착, 메뉴 보기 */
-.depart-button, .arrive-button, .menu-button {
+.departButton, .arriveButton, .menuButton {
     height: 50px;
     width: 48%;
     padding: 10px;
@@ -38,7 +38,7 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.depart-button {
+.departButton {
     background-color: var(--white);
     color: var(--red);
     border: 1px solid var(--red);
@@ -46,7 +46,7 @@
     margin-bottom: 20px;
 }
 
-.arrive-button {
+.arriveButton {
     background-color: var(--white);
     color: var(--red);
     border: 1px solid var(--red);
@@ -54,7 +54,7 @@
     margin-bottom: 20px;
 }
 
-.menu-button {
+.menuButton {
     width: 100%;
     background-color: var(--red);
     color: var(--white);
@@ -101,27 +101,27 @@
 }
 
 /* 레이아웃 관련 스타일 */
-.time-container {
+.timeContainer {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     margin-top: 5px;
 }
 
-.sponsor-container {
+.sponsorContainer {
     display: flex;
     align-items: center;
 }
 
-.address-container {
+.addressContainer {
     display: flex;
 }
 
-.name-container {
+.nameContainer {
     display: flex;
 }
 
-.sponsor-logo {
+.sponsorLogo {
     margin-top: 7px;
     margin-right: 6px;
 }

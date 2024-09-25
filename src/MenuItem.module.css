@@ -1,4 +1,4 @@
-.menu-item {
+.menuItem {
     display: flex;
     padding: 15px;
     padding-left: 30px;
@@ -9,19 +9,19 @@
 }
 
 
-.menu-name {
+.menuName {
     color: var(--red);
     font-family: PretendardSemiBold, serif;
     margin-left: 10px;
 }
 
-.menu-price {
+.menuPrice {
     color: var(--red);
     font-family: PretendardRegular, serif;
     margin-left: auto;
 }
 
-.restaurant-icon {
+.restaurantIcon {
     height: 20px;
     width: 20px;
 }
