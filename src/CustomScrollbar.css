@@ -5,7 +5,7 @@
 }
 
 .ps__thumb-x {
-    height: 8px !important; /* 스크롤바의 높이 조정 */
+    height: 0px !important; /* 스크롤바의 높이 조정 */
     background-color: rgba(0, 0, 0, 0.5); /* 스크롤바 색상 */
     border-radius: 5px;
 }
