@@ -25,6 +25,7 @@
     color: var(--lightgray);
     padding-left: 20px;
     cursor: pointer; /* 커서 모양을 포인터(손가락 모양)로 설정 */
+    pointer-events: auto;
 }
 
 .navigateButton {
@@ -32,6 +33,7 @@
     height: 54px;
     background: rgba(255, 255, 255, 0);
     cursor: pointer; /* 커서 모양을 포인터(손가락 모양)로 설정 */
+    pointer-events: auto;
 }
 
 .dialogButton {
@@ -42,6 +44,7 @@
     width: 54px;
     height: auto;
     cursor: pointer; /* 커서 모양을 포인터(손가락 모양)로 설정 */
+    pointer-events: auto;
 }
 
 .scrollbar{
@@ -53,6 +56,7 @@
     margin-top: 10px;
     margin-bottom: 15px;
     overflow: visible;
+    pointer-events: auto;
 }
 
 .scrollbarItem{
@@ -83,10 +87,14 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    pointer-events: none;
 }
 
 .GPSButton{
     bottom: 100px;
+    cursor: pointer;
+    pointer-events: auto;
+    display: none;
 }
 
 .GPScontainer {
