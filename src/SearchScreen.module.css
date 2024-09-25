@@ -1,0 +1,88 @@
+.searchScreenContainer {
+    padding: 10px;
+}
+
+.searchHeader {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.backIcon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    width: auto;
+    height: auto;
+    color: var(--red);
+}
+
+.searchInput {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 0px solid transparent; /* 포커스 시에도 테두리 제거 */
+    outline: none; /* 포커스 아웃라인 제거 */
+    font-family: PretendardRegular, sans-serif;
+}
+
+.clearButton {
+    position: absolute;
+    background: none;
+    border: none;
+    cursor: pointer;
+    right: 5px;
+}
+
+.filterOptions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.filterButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.resultList {
+    margin-top: 10px;
+}
+
+.resultItem {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.resultIcon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.resultDetails {
+    flex: 1;
+}
+
+.resultName {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.resultAddress {
+    font-size: 12px;
+    color: #666;
+}
+
+.resultDistance {
+    font-size: 12px;
+    color: #666;
+}

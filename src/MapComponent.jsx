@@ -8,6 +8,7 @@ import styles from './MapComponent.module.css';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './CustomScrollbar.css'; // 일반 CSS 파일 임포트
+import { useNavigate } from 'react-router-dom';
 
 function MapComponent() {
     const [markers, setMarkers] = useState([]); // 모든 마커 정보 저장
@@ -17,6 +18,8 @@ function MapComponent() {
     const [allMarkers, setAllMarkers] = useState([]); // 모든 마커 ID 저장
     const [cachedData, setCachedData] = useState({}); // API 데이터 캐싱
     const [activeFilter, setActiveFilter] = useState(null); // 현재 활성화된 버튼 ID 저장
+
+    const navigate = useNavigate();
 
     // 마커 JSON 파일 로드
     useEffect(() => {
@@ -145,11 +148,9 @@ function MapComponent() {
         }
     };
 
-    // 모든 마커 초기화 (아무 버튼도 클릭하지 않았을 때)
-    const handleShowAllMarkers = () => {
-        setActiveMarkers(allMarkers);
+    const handleSearchClick = () => {
+        navigate('/search');
     };
-
     // 다이얼로그 핸들러
     const handleDialogOpen = () => {
         setIsDialogOpen(true);
@@ -169,7 +170,7 @@ function MapComponent() {
             <div id="map" style={{ width: '100%', height: '100%' }}></div>
             <div className={styles.homeLayout}>
                 <div className={styles.searchAndNavigate}>
-                    <button className={styles.searchButton}>
+                    <button className={styles.searchButton} onClick={handleSearchClick}>
                         주점, 음식, 교우회 검색
                     </button>
                     <img src={DirectionIcon}
