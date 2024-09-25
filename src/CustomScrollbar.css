@@ -1,6 +1,7 @@
 .ps__rail-x {
     bottom: 0px !important; /* 트랙을 하단에 위치시킴 */
     top: auto !important;
+    background-color: rgba(255, 255, 255, 0) !important; /* 스크롤바 색상 */
 }
 
 .ps__thumb-x {

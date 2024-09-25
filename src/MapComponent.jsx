@@ -117,19 +117,20 @@ function MapComponent() {
                          className={styles.navigateButton}/>
                 </div>
                 <div className={styles.searchAndNavigate}>
-                    <PerfectScrollbar className={styles.scrollbarContainer}>
+                    <PerfectScrollbar className={styles.scrollbarContainer} options={{ suppressScrollY: true }}>
                         <div className={styles.scrollbar}>
-                            <div className={styles.scrollbarItem}>sdaf</div>
-                            <div className={styles.scrollbarItem}>sdaf</div>
-                            <div className={styles.scrollbarItem}>sdaf</div>
-                            <div className={styles.scrollbarItem}>sdaf</div>
-                            <div className={styles.scrollbarItem}>sdaf</div>
-                            <div className={styles.scrollbarItem}>sdaf</div>
-                            <div className={styles.scrollbarItem}>sdaf</div>
+                            <button className={styles.scrollbarItem}>치킨/고기</button>
+                            <button className={styles.scrollbarItem}>튀김류</button>
+                            <button className={styles.scrollbarItem}>볶음류</button>
+                            <button className={styles.scrollbarItem}>떡볶이</button>
+                            <button className={styles.scrollbarItem}>디저트/샐러드</button>
+                            <button className={styles.scrollbarItem}>탕류</button>
+                            <button className={styles.scrollbarItem}>부침개</button>
+                            <button className={styles.scrollbarItem}>기타</button>
                         </div>
                     </PerfectScrollbar>
                 </div>
-                <div className={styles.searchAndNavigate}>
+                <div className={styles.searchAndNavigate} style={{flexDirection: 'row-reverse'}}>
                     <img src={alarmIcon}
                          alt="종 버튼"
                          className={styles.dialogButton}

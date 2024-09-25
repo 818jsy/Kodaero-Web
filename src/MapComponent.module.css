@@ -24,24 +24,24 @@
     text-align: left;
     color: var(--lightgray);
     padding-left: 20px;
+    cursor: pointer; /* 커서 모양을 포인터(손가락 모양)로 설정 */
 }
 
 .navigateButton {
     width: 54px;
     height: 54px;
     background: rgba(255, 255, 255, 0);
+    cursor: pointer; /* 커서 모양을 포인터(손가락 모양)로 설정 */
 }
 
 .dialogButton {
-    position: absolute;
-    top: 100px;
-    right: 0px;
     background: none;
     border: none;
     cursor: pointer;
     outline: none;
     width: 54px;
     height: auto;
+    cursor: pointer; /* 커서 모양을 포인터(손가락 모양)로 설정 */
 }
 
 .scrollbar{
@@ -50,25 +50,35 @@
     height: auto;
     width: auto;
     right: 10px;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 15px;
     overflow: visible;
 }
 
 .scrollbarItem{
+    cursor: pointer; /* 커서 모양을 포인터(손가락 모양)로 설정 */
     height: auto;
     width: auto;
     background: var(--white);
-    border-radius: 10px;
-    padding: 3px 15px 3px 15px;
+    border-radius: 20px;
+    padding: 5px 12px 5px 12px;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3) !important;
-    margin-right: 130px;
+    margin-right: 20px;
+    white-space: nowrap;
+    font-family: PretendardRegular, sans-serif;
+    color: var(--gray);
+    font-size: 12px;
+    border: 0;
+}
 
+.scrollbarItem:active{
+    background: var(--red);
+    color: var(--white);
 }
 
 .homeLayout{
     position: absolute;
-    top: 100px;
+    top: 50px;
     height: 100px;
     width: 100%;
     display: flex;
