@@ -25,7 +25,7 @@ function MenuScreen() {
     }, [id, navigate]);
 
     const handleBackClick = () => {
-        navigate(-1); // 이전 페이지로 이동
+        navigate('/'); // 이전 페이지로 이동
     };
 
     return (

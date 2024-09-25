@@ -79,8 +79,20 @@
 .homeLayout{
     position: absolute;
     top: 20px;
-    height: 100px;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.GPSButton{
+    bottom: 100px;
+}
+
+.GPScontainer {
+    position: absolute;
+    width: 90%;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
 }

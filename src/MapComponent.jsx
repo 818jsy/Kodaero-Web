@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import markerIcon from './assets/marker.png'; // PNG 파일을 import
 import alarmIcon from './assets/images/icon_alarm.png'; // PNG 파일을 import
 import DirectionIcon from './assets/images/icon_direction.svg'; // PNG 파일을 import
+import GPSIcon from './assets/images/icon_GPS.svg'; // PNG 파일을 import
 import ModalComponent from './ModalComponent';
 import DialogComponent from './DialogComponent';
 import styles from './MapComponent.module.css';
@@ -178,24 +179,45 @@ function MapComponent() {
                          className={styles.navigateButton}/>
                 </div>
                 <div className={styles.searchAndNavigate}>
-                    <PerfectScrollbar className={styles.scrollbarContainer} options={{ suppressScrollY: true }}>
+                    <PerfectScrollbar className={styles.scrollbarContainer} options={{suppressScrollY: true}}>
                         <div className={styles.scrollbar}>
-                            <button className={`${styles.scrollbarItem} ${activeFilter === 1 ? styles.active : ''}`} onClick={() => handleButtonClick(1)}>치킨/고기</button>
-                            <button className={`${styles.scrollbarItem} ${activeFilter === 2 ? styles.active : ''}`} onClick={() => handleButtonClick(2)}>튀김류</button>
-                            <button className={`${styles.scrollbarItem} ${activeFilter === 3 ? styles.active : ''}`} onClick={() => handleButtonClick(3)}>볶음류</button>
-                            <button className={`${styles.scrollbarItem} ${activeFilter === 4 ? styles.active : ''}`} onClick={() => handleButtonClick(4)}>떡볶이</button>
-                            <button className={`${styles.scrollbarItem} ${activeFilter === 5 ? styles.active : ''}`} onClick={() => handleButtonClick(5)}>디저트/샐러드</button>
-                            <button className={`${styles.scrollbarItem} ${activeFilter === 6 ? styles.active : ''}`} onClick={() => handleButtonClick(6)}>탕류</button>
-                            <button className={`${styles.scrollbarItem} ${activeFilter === 7 ? styles.active : ''}`} onClick={() => handleButtonClick(7)}>부침개</button>
-                            <button className={`${styles.scrollbarItem} ${activeFilter === 8 ? styles.active : ''}`} onClick={() => handleButtonClick(8)}>기타</button>
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 1 ? styles.active : ''}`}
+                                    onClick={() => handleButtonClick(1)}>치킨/고기
+                            </button>
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 2 ? styles.active : ''}`}
+                                    onClick={() => handleButtonClick(2)}>튀김류
+                            </button>
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 3 ? styles.active : ''}`}
+                                    onClick={() => handleButtonClick(3)}>볶음류
+                            </button>
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 4 ? styles.active : ''}`}
+                                    onClick={() => handleButtonClick(4)}>떡볶이
+                            </button>
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 5 ? styles.active : ''}`}
+                                    onClick={() => handleButtonClick(5)}>디저트/샐러드
+                            </button>
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 6 ? styles.active : ''}`}
+                                    onClick={() => handleButtonClick(6)}>탕류
+                            </button>
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 7 ? styles.active : ''}`}
+                                    onClick={() => handleButtonClick(7)}>부침개
+                            </button>
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 8 ? styles.active : ''}`}
+                                    onClick={() => handleButtonClick(8)}>기타
+                            </button>
                         </div>
                     </PerfectScrollbar>
                 </div>
-                <div className={styles.searchAndNavigate} style={{ flexDirection: 'row-reverse' }}>
+                <div className={styles.searchAndNavigate} style={{flexDirection: 'row-reverse'}}>
                     <img src={alarmIcon}
                          alt="종 버튼"
                          className={styles.dialogButton}
-                         onClick={handleDialogOpen} />
+                         onClick={handleDialogOpen}/>
+                </div>
+                <div className={styles.GPScontainer}>
+                    <img src={GPSIcon}
+                         alt="GPS Icon"
+                         className={styles.GPSButton}/>
                 </div>
             </div>
 
