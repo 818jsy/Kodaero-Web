@@ -3,7 +3,6 @@ import markerIcon from './assets/marker.png'; // PNG 파일을 import
 import alarmIcon from './assets/images/icon_alarm.png'; // PNG 파일을 import
 import DirectionIcon from './assets/images/icon_direction.svg'; // PNG 파일을 import
 import GPSIcon from './assets/images/icon_GPS.svg'; // PNG 파일을 import
-import MyPinIcon from './assets/images/pin_location.png'; // 내 위치 아이콘 이미지
 import ModalComponent from './ModalComponent';
 import DialogComponent from './DialogComponent';
 import styles from './MapComponent.module.css';
@@ -20,7 +19,6 @@ function MapComponent() {
     const [allMarkers, setAllMarkers] = useState([]); // 모든 마커 ID 저장
     const [cachedData, setCachedData] = useState({}); // API 데이터 캐싱
     const [activeFilter, setActiveFilter] = useState(null); // 현재 활성화된 버튼 ID 저장
-    const [myLocationMarker, setMyLocationMarker] = useState(null); // 내 위치 마커 저장
 
     const navigate = useNavigate();
 
@@ -122,88 +120,28 @@ function MapComponent() {
                 updateMarkerSize(map.getZoom(), prevMarkers);
                 return prevMarkers;
             });
-
-
-            // 내 위치 마커 추가 함수
-            const addMyLocationMarker = (position) => {
-                const myMarker = new window.naver.maps.Marker({
-                    position: new window.naver.maps.LatLng(position.lat, position.lon),
-                    map: map,
-                    icon: {
-                        url: MyPinIcon,
-                        size: new window.naver.maps.Size(24, 24),
-                        scaledSize: new window.naver.maps.Size(24, 24),
-                        origin: new window.naver.maps.Point(0, 0),
-                        anchor: new window.naver.maps.Point(12, 12)
-                    }
-                });
-
-                setMyLocationMarker(myMarker);
-            };
-
-            // 내 위치를 계속 추적하여 업데이트
-            navigator.geolocation.watchPosition(
-                (position) => {
-                    const { latitude, longitude } = position.coords;
-                    if (myLocationMarker) {
-                        myLocationMarker.setPosition(new window.naver.maps.LatLng(latitude, longitude));
-                    } else {
-                        addMyLocationMarker({ lat: latitude, lon: longitude });
-                    }
-                },
-                (error) => console.error('Error fetching location', error),
-                { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-            );
-
         };
         document.head.appendChild(script);
     }, [markers, activeMarkers]);
 
-    // GPS 버튼 클릭 시 내 위치 마커 추가 함수
-    const handleGPSClick = () => {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const { latitude, longitude } = position.coords;
-                if (myLocationMarker) {
-                    // 이미 마커가 있으면 위치 업데이트
-                    myLocationMarker.setPosition(new window.naver.maps.LatLng(latitude, longitude));
-                } else {
-                    // 마커가 없으면 새로 추가
-                    const myMarker = new window.naver.maps.Marker({
-                        position: new window.naver.maps.LatLng(latitude, longitude),
-                        map: map,
-                        icon: {
-                            url: MyPinIcon,
-                            size: new window.naver.maps.Size(24, 24),
-                            scaledSize: new window.naver.maps.Size(24, 24),
-                            origin: new window.naver.maps.Point(0, 0),
-                            anchor: new window.naver.maps.Point(12, 12)
-                        }
-                    });
-                    setMyLocationMarker(myMarker);
-                }
-            },
-            (error) => console.error('Error fetching location', error),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-        );
-    };
 
-
+// 버튼 클릭 시 마커 필터링 로직
     const handleButtonClick = async (id) => {
         try {
             if (activeFilter === id) {
+                // 이미 활성화된 버튼을 다시 클릭하면 비활성화 (전체 보기)
                 setActiveFilter(null);
                 setActiveMarkers(allMarkers);
             } else {
-                setActiveFilter(id);
+                setActiveFilter(id); // 새로운 필터 활성화
                 if (cachedData[id]) {
-                    setActiveMarkers(cachedData[id]);
+                    setActiveMarkers(cachedData[id]); // 이미 캐싱된 데이터가 있으면 사용
                 } else {
                     const response = await fetch(`https://be.kodaero.site/api/koyeon/pubs?tagId=${id}`);
                     const result = await response.json();
                     const markerIds = result.data.list.map(item => item.id);
-                    setCachedData(prev => ({ ...prev, [id]: markerIds }));
-                    setActiveMarkers(markerIds);
+                    setCachedData(prev => ({ ...prev, [id]: markerIds })); // 데이터 캐싱
+                    setActiveMarkers(markerIds); // 받아온 마커 ID로 필터링
                 }
             }
         } catch (error) {
@@ -214,7 +152,7 @@ function MapComponent() {
     const handleSearchClick = () => {
         navigate('/search');
     };
-
+    // 다이얼로그 핸들러
     const handleDialogOpen = () => {
         setIsDialogOpen(true);
     };
@@ -222,10 +160,11 @@ function MapComponent() {
     const handleDialogClose = () => {
         setIsDialogOpen(false);
     };
-
+    // 버튼의 클래스 이름을 동적으로 설정
     const getButtonClassName = (id) => {
         return `${styles.scrollbarItem} ${activeFilter === id ? styles.active : ''}`;
     };
+
 
     return (
         <div className={styles.mapContainer}>
@@ -242,28 +181,28 @@ function MapComponent() {
                 <div className={styles.searchAndNavigate}>
                     <PerfectScrollbar className={styles.scrollbarContainer} options={{suppressScrollY: true}}>
                         <div className={styles.scrollbar}>
-                            <button className={getButtonClassName(1)}
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 1 ? styles.active : ''}`}
                                     onClick={() => handleButtonClick(1)}>치킨/고기
                             </button>
-                            <button className={getButtonClassName(2)}
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 2 ? styles.active : ''}`}
                                     onClick={() => handleButtonClick(2)}>튀김류
                             </button>
-                            <button className={getButtonClassName(3)}
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 3 ? styles.active : ''}`}
                                     onClick={() => handleButtonClick(3)}>볶음류
                             </button>
-                            <button className={getButtonClassName(4)}
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 4 ? styles.active : ''}`}
                                     onClick={() => handleButtonClick(4)}>떡볶이
                             </button>
-                            <button className={getButtonClassName(5)}
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 5 ? styles.active : ''}`}
                                     onClick={() => handleButtonClick(5)}>디저트/샐러드
                             </button>
-                            <button className={getButtonClassName(6)}
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 6 ? styles.active : ''}`}
                                     onClick={() => handleButtonClick(6)}>탕류
                             </button>
-                            <button className={getButtonClassName(7)}
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 7 ? styles.active : ''}`}
                                     onClick={() => handleButtonClick(7)}>부침개
                             </button>
-                            <button className={getButtonClassName(8)}
+                            <button className={`${styles.scrollbarItem} ${activeFilter === 8 ? styles.active : ''}`}
                                     onClick={() => handleButtonClick(8)}>기타
                             </button>
                         </div>
@@ -278,8 +217,7 @@ function MapComponent() {
                 <div className={styles.GPScontainer}>
                     <img src={GPSIcon}
                          alt="GPS Icon"
-                         className={styles.GPSButton}
-                         onClick={handleGPSClick} />
+                         className={styles.GPSButton}/>
                 </div>
             </div>
 

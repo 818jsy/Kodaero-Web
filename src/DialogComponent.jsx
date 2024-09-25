@@ -30,7 +30,7 @@ function DialogComponent({ isOpen, onClose }) {
                         <strong>고대로</strong>는 학교 건물의 <strong>실내 지도</strong> 및 <strong>편의시설 안내</strong>를 돕는
                         통합형 애플리케이션으로, 베타테스트가 마무리되어
                         현재 플레이스토어 검수 단계에 있습니다.<br/>
-                        하단의 링크에 접속하셔서 이메일 주소를 남겨주시면
+                        하단의 링크에 접속하셔서 이메일 주소를 남겨주시면 
                         <strong>정식 출시 후 알림 메일</strong>을 발송해 드립니다:)
                     </p>
                 </DialogContentText>
