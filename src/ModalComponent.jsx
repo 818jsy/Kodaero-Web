@@ -8,7 +8,7 @@ function ModalComponent({ isOpen, onClose, markerData }) {
     const navigate = useNavigate();
 
     const handleMenuClick = () => {
-        navigate(`/menu/${markerData.ID}`);
+        navigate(`/menu/${markerData.ID.toString()}`);
     };
 
     return (

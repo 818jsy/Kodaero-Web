@@ -15,7 +15,7 @@ function MenuScreen() {
         fetch('/markers.json') // 로컬 JSON 파일에서 데이터를 불러옴
             .then(response => response.json())
             .then(data => {
-                const foundMarker = data.find(marker => marker.ID === id);
+                const foundMarker = data.find(marker => marker.ID == id);
                 if (foundMarker) {
                     setMarkerData(foundMarker);
                 } else {
