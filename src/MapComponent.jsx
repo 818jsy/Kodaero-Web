@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import markerIcon from './assets/marker.png'; // PNG 파일을 import
-import ModalComponent from './ModalComponent'; // ModalComponent import
-import DialogComponent from './DialogComponent'; // DialogComponent import
-import Button from '@mui/material/Button';
+import alarmIcon from './assets/images/icon_alarm.png'; // PNG 파일을 import
+import DirectionIcon from './assets/images/icon_direction.svg'; // PNG 파일을 import
+import ModalComponent from './ModalComponent';
+import DialogComponent from './DialogComponent';
+import styles from './MapComponent.module.css';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import './CustomScrollbar.css'; // 일반 CSS 파일 임포트
+
 
 function MapComponent() {
     const [markers, setMarkers] = useState([]);
     const [selectedMarker, setSelectedMarker] = useState(null);
-    const [isDialogOpen, setIsDialogOpen] = useState(false); // 다이얼로그 상태 관리
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     useEffect(() => {
-        // 로컬에 있는 JSON 파일을 fetch로 불러오기
         fetch('/markers.json')
             .then(response => response.json())
             .then(data => setMarkers(data))
@@ -18,9 +23,7 @@ function MapComponent() {
     }, []);
 
     useEffect(() => {
-        console.log('Markers data:', markers);
-
-        if (markers.length === 0) return; // 마커가 없으면 실행하지 않음
+        if (markers.length === 0) return;
 
         const script = document.createElement('script');
         script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8alsyra0y4';
@@ -89,7 +92,7 @@ function MapComponent() {
             });
         };
         document.head.appendChild(script);
-    }, [markers]); // markers가 업데이트될 때마다 실행
+    }, [markers]);
 
     const handleDialogOpen = () => {
         setIsDialogOpen(true);
@@ -99,28 +102,52 @@ function MapComponent() {
         setIsDialogOpen(false);
     };
 
+    const menuItems = ["치킨/고기", "튀김류", "볶음류", "떡볶이", "디저트/샐러드"];
+
     return (
-        <div style={{ position: 'relative', width: '100%', height: 'calc(var(--vh, 1vh) * 100)' }}>
-            <div id="map" style={{ width: '100%', height: '100%' }}>
-                <ModalComponent
-                    isOpen={!!selectedMarker}
-                    onClose={() => setSelectedMarker(null)}
-                    markerData={selectedMarker || {}}
-                />
+        <div className={styles.mapContainer}>
+            <div id="map" style={{width: '100%', height: '100%'}}></div>
+            <div className={styles.homeLayout}>
+                <div className={styles.searchAndNavigate}>
+                    <button className={styles.searchButton}>
+                        주점, 음식, 교우회 검색
+                    </button>
+                    <img src={DirectionIcon}
+                         alt="길 찾기"
+                         className={styles.navigateButton}/>
+                </div>
+                <div className={styles.searchAndNavigate}>
+                    <PerfectScrollbar className={styles.scrollbarContainer}>
+                        <div className={styles.scrollbar}>
+                            <div className={styles.scrollbarItem}>sdaf</div>
+                            <div className={styles.scrollbarItem}>sdaf</div>
+                            <div className={styles.scrollbarItem}>sdaf</div>
+                            <div className={styles.scrollbarItem}>sdaf</div>
+                            <div className={styles.scrollbarItem}>sdaf</div>
+                            <div className={styles.scrollbarItem}>sdaf</div>
+                            <div className={styles.scrollbarItem}>sdaf</div>
+                        </div>
+                    </PerfectScrollbar>
+                </div>
+                <div className={styles.searchAndNavigate}>
+                    <img src={alarmIcon}
+                         alt="종 버튼"
+                         className={styles.dialogButton}
+                         onClick={handleDialogOpen}/>
+                </div>
             </div>
-            <Button
-                variant="contained"
-                color="primary"
-                style={{ position: 'absolute', top: '10px', right: '10px' }}
-                onClick={handleDialogOpen}
-            >
-                Open Dialog
-            </Button>
+
+
+            <ModalComponent
+                isOpen={!!selectedMarker}
+                onClose={() => setSelectedMarker(null)}
+                markerData={selectedMarker || {}}
+            />
             <DialogComponent
                 isOpen={isDialogOpen}
                 onClose={handleDialogClose}
-                title="Dialog Title"
-                content="This is a simple dialog example. You can place any content here."
+                title="정식 출시 알림을 받아보세요!"
+                content="고대로는 학교 건물의 실내 지도 및 편의시설 안내를 돕는 통합형 애플리케이션으로, 베타테스트가 마무리되어 현재 플레이스토어 검수 단계에 있습니다. 하단의 링크에 접속하셔서 이메일 주소를 남겨주시면 정식 출시 후 알림 메일을 발송해 드립니다:)"
             />
         </div>
     );

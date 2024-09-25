@@ -1,0 +1,76 @@
+.mapContainer {
+    position: relative;
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 100);
+}
+
+.searchAndNavigate {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.searchButton {
+    flex: 1;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    margin-right: 20px;
+    background-color: var(--white);
+    box-shadow: 0px -2px 15px rgba(0, 0, 0, 0.3) !important;
+    font-family: PretendardRegular, sans-serif;
+    text-align: left;
+    color: var(--lightgray);
+    padding-left: 20px;
+}
+
+.navigateButton {
+    width: 54px;
+    height: 54px;
+    background: rgba(255, 255, 255, 0);
+}
+
+.dialogButton {
+    position: absolute;
+    top: 100px;
+    right: 0px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    width: 54px;
+    height: auto;
+}
+
+.scrollbar{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    right: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    overflow: visible;
+}
+
+.scrollbarItem{
+    height: auto;
+    width: auto;
+    background: var(--white);
+    border-radius: 10px;
+    padding: 3px 15px 3px 15px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3) !important;
+    margin-right: 130px;
+
+}
+
+.homeLayout{
+    position: absolute;
+    top: 100px;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,10 @@
+.ps__rail-x {
+    bottom: 0px !important; /* 트랙을 하단에 위치시킴 */
+    top: auto !important;
+}
+
+.ps__thumb-x {
+    height: 8px !important; /* 스크롤바의 높이 조정 */
+    background-color: rgba(0, 0, 0, 0.5); /* 스크롤바 색상 */
+    border-radius: 5px;
+}
