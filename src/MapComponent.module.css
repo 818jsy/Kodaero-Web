@@ -47,7 +47,7 @@
 .scrollbar{
     display: flex;
     flex-direction: row;
-    height: auto;
+    height: 30px;
     width: auto;
     right: 10px;
     margin-top: 10px;
@@ -57,7 +57,7 @@
 
 .scrollbarItem{
     cursor: pointer; /* 커서 모양을 포인터(손가락 모양)로 설정 */
-    height: auto;
+    height: 30px;
     width: auto;
     background: var(--white);
     border-radius: 20px;
