@@ -1,22 +1,24 @@
 .menuItem {
     display: flex;
-    padding: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding: 13px 15px 13px 15px;
     border-bottom: 1px solid #eee;
     font-size: 18px;
     align-items: center;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3) !important;
+    margin: 10px 30px 0px 30px;
 }
 
 
 .menuName {
-    color: var(--red);
+    color: var(--gray);
     font-family: PretendardSemiBold, serif;
     margin-left: 10px;
 }
 
 .menuPrice {
-    color: var(--red);
+    color: var(--lightgray);
     font-family: PretendardRegular, serif;
     margin-left: auto;
 }

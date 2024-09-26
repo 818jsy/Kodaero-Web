@@ -35,7 +35,12 @@ function DialogComponent({ isOpen, onClose }) {
                     </p>
                 </DialogContentText>
                 <DialogActions className={styles.dialogActions}>
-                    <Button onClick={onClose} className={styles.dialogPrimaryButton}>
+                    <Button
+                        onClick={() => {
+                            onClose();
+                            window.location.href = "https://forms.gle/5E6sVU8ox2sepVT5A";
+                        }}
+                        className={styles.dialogPrimaryButton}>
                         출시 알림 받기
                     </Button>
                     <Button onClick={onClose} className={styles.dialogSecondaryButton}>

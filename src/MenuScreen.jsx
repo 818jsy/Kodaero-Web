@@ -55,8 +55,13 @@ function MenuScreen() {
                             <button className={styles.arriveButton}>도착</button>
                         </div>
                     </div>
+                    <div className={styles.bottomContainer}>
+                        <div className={styles.menuText}>
+                            무료주점 메뉴
+                        </div>
 
-                    <MenuList menuItems={markerData.menu} />
+                        <MenuList menuItems={markerData.menu} />
+                    </div>
                 </>
             ) : (
                 <p></p>
