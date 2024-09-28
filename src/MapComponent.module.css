@@ -26,9 +26,11 @@
     padding-left: 20px;
     cursor: pointer; /* 커서 모양을 포인터(손가락 모양)로 설정 */
     pointer-events: auto;
+    height: 54px;
 }
 
 .navigateButton {
+    display: none;
     width: 54px;
     height: 54px;
     background: rgba(255, 255, 255, 0);

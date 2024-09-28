@@ -36,9 +36,11 @@
     cursor: pointer;
     font-family: PretendardSemiBold, serif;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
 }
 
 .departButton {
+    display: none;
     background-color: var(--white);
     color: var(--red);
     border: 1px solid var(--red);
@@ -47,6 +49,7 @@
 }
 
 .arriveButton {
+    display: none;
     background-color: var(--white);
     color: var(--red);
     border: 1px solid var(--red);

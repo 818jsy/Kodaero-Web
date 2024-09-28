@@ -65,11 +65,12 @@
 .modalFooter {
     display: flex;
     justify-content: space-between;
-    padding-top: 10px;
+    padding-top: 25px;
 }
 
 /* 버튼 스타일 - 출발, 도착, 메뉴 보기 */
 .departButton, .arriveButton, .menuButton {
+    display: none;
     height: 50px;
     width: 48%;
     padding: 10px;
