@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import markerIcon from './assets/marker.png'; // PNG 파일을 import
 import alarmIcon from './assets/images/icon_alarm.png'; // PNG 파일을 import
 import DirectionIcon from './assets/images/icon_direction.svg'; // PNG 파일을 import
@@ -19,6 +19,7 @@ function MapComponent() {
     const [allMarkers, setAllMarkers] = useState([]); // 모든 마커 ID 저장
     const [cachedData, setCachedData] = useState({}); // API 데이터 캐싱
     const [activeFilter, setActiveFilter] = useState(null); // 현재 활성화된 버튼 ID 저장
+    const mapRef = useRef(null); // map 객체를 저장할 ref
 
     const navigate = useNavigate();
 
@@ -34,9 +35,8 @@ function MapComponent() {
             .catch(error => console.error('Error fetching the JSON file:', error));
     }, []);
 
+    // 지도 객체 생성은 한 번만 실행되도록 분리
     useEffect(() => {
-        if (markers.length === 0) return;
-
         const script = document.createElement('script');
         script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8alsyra0y4';
         script.async = true;
@@ -46,86 +46,95 @@ function MapComponent() {
                 zoom: 17,
             };
 
-            const map = new window.naver.maps.Map('map', mapOptions);
-
-            let markerObjects = markers.map(markerData => {
-                const marker = new window.naver.maps.Marker({
-                    position: new window.naver.maps.LatLng(markerData.lat, markerData.lon),
-                    map: map,
-                    icon: {
-                        url: markerIcon,
-                        size: new window.naver.maps.Size(20, 31),
-                        scaledSize: new window.naver.maps.Size(20, 31),
-                        origin: new window.naver.maps.Point(0, 0),
-                        anchor: new window.naver.maps.Point(10, 31)
-                    }
-                });
-
-                // 마커 클릭 이벤트
-                window.naver.maps.Event.addListener(marker, 'click', function () {
-                    setSelectedMarker(markerData);
-                });
-
-                return { id: markerData.ID, marker };
-            });
-
-            const updateMarkerSize = (zoomLevel, activeIds) => {
-                markerObjects.forEach(({ id, marker }) => {
-                    if (activeIds.includes(id)) {
-                        let scaleFactor;
-                        if (zoomLevel >= 17 && zoomLevel <= 20) {
-                            scaleFactor = 1 + (zoomLevel - 17) * 0.33;
-                        } else if (zoomLevel > 20) {
-                            scaleFactor = 2;
-                        } else {
-                            scaleFactor = 1;
-                        }
-                        const newSize = new window.naver.maps.Size(20 * scaleFactor, 31 * scaleFactor);
-                        marker.setIcon({
-                            url: markerIcon,
-                            size: newSize,
-                            scaledSize: newSize,
-                            origin: new window.naver.maps.Point(0, 0),
-                            anchor: new window.naver.maps.Point(10 * scaleFactor, 31 * scaleFactor)
-                        });
-                    }
-                });
-            };
-
-            const updateMarkersVisibility = (activeIds) => {
-                markerObjects.forEach(({ id, marker }) => {
-                    if (activeIds.includes(id)) {
-                        marker.setMap(map); // 활성화된 마커만 지도에 표시
-                    } else {
-                        marker.setMap(null); // 비활성화된 마커는 지도에서 제거
-                    }
-                });
-            };
-
-            // 초기 마커 설정
-            updateMarkersVisibility(activeMarkers);
-
-            // 마커 크기 조절 초기화
-            updateMarkerSize(map.getZoom(), activeMarkers);
-
-            // 지도 줌 변경 이벤트
-            window.naver.maps.Event.addListener(map, 'zoom_changed', function () {
-                const zoomLevel = map.getZoom();
-                updateMarkerSize(zoomLevel, activeMarkers);
-            });
-
-            // 마커 상태 업데이트 시 마커 표시 및 크기 업데이트
-            setActiveMarkers(prevMarkers => {
-                updateMarkersVisibility(prevMarkers);
-                updateMarkerSize(map.getZoom(), prevMarkers);
-                return prevMarkers;
-            });
+            mapRef.current = new window.naver.maps.Map('map', mapOptions);
         };
         document.head.appendChild(script);
+    }, []);
+
+    // 마커 관리 useEffect
+    useEffect(() => {
+        if (!mapRef.current || markers.length === 0) return;
+
+        let markerObjects = markers.map(markerData => {
+            const marker = new window.naver.maps.Marker({
+                position: new window.naver.maps.LatLng(markerData.lat, markerData.lon),
+                map: mapRef.current, // 기존 map 객체 사용
+                icon: {
+                    url: markerIcon,
+                    size: new window.naver.maps.Size(20, 31),
+                    scaledSize: new window.naver.maps.Size(20, 31),
+                    origin: new window.naver.maps.Point(0, 0),
+                    anchor: new window.naver.maps.Point(10, 31)
+                }
+            });
+
+            // 마커 클릭 이벤트
+            window.naver.maps.Event.addListener(marker, 'click', function () {
+                setSelectedMarker(markerData);
+            });
+
+            return { id: markerData.ID, marker };
+        });
+
+        const updateMarkerSize = (zoomLevel, activeIds) => {
+            markerObjects.forEach(({ id, marker }) => {
+                if (activeIds.includes(id)) {
+                    let scaleFactor;
+                    if (zoomLevel >= 17 && zoomLevel <= 20) {
+                        scaleFactor = 1 + (zoomLevel - 17) * 0.33;
+                    } else if (zoomLevel > 20) {
+                        scaleFactor = 2;
+                    } else {
+                        scaleFactor = 1;
+                    }
+                    const newSize = new window.naver.maps.Size(20 * scaleFactor, 31 * scaleFactor);
+                    marker.setIcon({
+                        url: markerIcon,
+                        size: newSize,
+                        scaledSize: newSize,
+                        origin: new window.naver.maps.Point(0, 0),
+                        anchor: new window.naver.maps.Point(10 * scaleFactor, 31 * scaleFactor)
+                    });
+                }
+            });
+        };
+
+        const updateMarkersVisibility = (activeIds) => {
+            markerObjects.forEach(({ id, marker }) => {
+                if (activeIds.includes(id)) {
+                    marker.setMap(mapRef.current); // 활성화된 마커만 지도에 표시
+                } else {
+                    marker.setMap(null); // 비활성화된 마커는 지도에서 제거
+                }
+            });
+        };
+
+        // 초기 마커 설정
+        updateMarkersVisibility(activeMarkers);
+
+        // 마커 크기 조절 초기화
+        updateMarkerSize(mapRef.current.getZoom(), activeMarkers);
+
+        // 지도 줌 변경 이벤트
+        window.naver.maps.Event.addListener(mapRef.current, 'zoom_changed', function () {
+            const zoomLevel = mapRef.current.getZoom();
+            updateMarkerSize(zoomLevel, activeMarkers);
+        });
+
+        // 마커 상태 업데이트 시 마커 표시 및 크기 업데이트
+        setActiveMarkers(prevMarkers => {
+            updateMarkersVisibility(prevMarkers);
+            updateMarkerSize(mapRef.current.getZoom(), prevMarkers);
+            return prevMarkers;
+        });
+
+        // Cleanup function to remove markers when activeMarkers changes
+        return () => {
+            markerObjects.forEach(({ marker }) => marker.setMap(null));
+        };
     }, [markers, activeMarkers]);
 
-
-// 버튼 클릭 시 마커 필터링 로직
+    // 버튼 클릭 시 마커 필터링 로직
     const handleButtonClick = async (id) => {
         try {
             if (activeFilter === id) {
