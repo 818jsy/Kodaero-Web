@@ -23,6 +23,9 @@ function MapComponent() {
 
     const navigate = useNavigate();
 
+    const [isMapLoaded, setIsMapLoaded] = useState(false); // 지도 로드 상태
+    const [isMarkersLoaded, setIsMarkersLoaded] = useState(false); // 마커 데이터 로드 상태
+
     // 마커 JSON 파일 로드
     useEffect(() => {
         fetch('/markers.json')
@@ -31,6 +34,7 @@ function MapComponent() {
                 setMarkers(data);
                 setAllMarkers(data.map(marker => marker.ID)); // 모든 마커의 ID 저장
                 setActiveMarkers(data.map(marker => marker.ID)); // 초기 상태에서는 모든 마커 활성화
+                setIsMarkersLoaded(true); // 마커 데이터 로드 완료
             })
             .catch(error => console.error('Error fetching the JSON file:', error));
     }, []);
@@ -47,13 +51,14 @@ function MapComponent() {
             };
 
             mapRef.current = new window.naver.maps.Map('map', mapOptions);
+            setIsMapLoaded(true); // 지도 로드 완료
         };
         document.head.appendChild(script);
     }, []);
 
     // 마커 관리 useEffect
     useEffect(() => {
-        if (!mapRef.current || markers.length === 0) return;
+        if (!mapRef.current || !isMapLoaded || !isMarkersLoaded) return; // 지도와 마커 데이터가 모두 로드된 후 실행
 
         let markerObjects = markers.map(markerData => {
             const marker = new window.naver.maps.Marker({
@@ -132,7 +137,8 @@ function MapComponent() {
         return () => {
             markerObjects.forEach(({ marker }) => marker.setMap(null));
         };
-    }, [markers, activeMarkers]);
+    }, [isMapLoaded, isMarkersLoaded, markers, activeMarkers]); // isMapLoaded와 isMarkersLoaded가 true일 때 실행
+
 
     // 버튼 클릭 시 마커 필터링 로직
     const handleButtonClick = async (id) => {
